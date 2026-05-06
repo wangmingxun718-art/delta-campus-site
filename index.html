@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>青岛三十九中绝密行动战术地图</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="map-stage" aria-label="行动地图">
+        <div class="hud-bar">
+          <button class="filter-chip" data-filter="extract" type="button">
+            <span class="chip-icon icon-extract"></span>
+            撤离
+          </button>
+          <button class="filter-chip" data-filter="safe" type="button">
+            <span class="chip-icon icon-safe"></span>
+            保险柜
+          </button>
+          <button class="filter-chip" data-filter="intel" type="button">
+            <span class="chip-icon icon-intel"></span>
+            局内行动
+          </button>
+          <button class="filter-chip" data-filter="target" type="button">
+            <span class="chip-icon icon-target"></span>
+            BOSS首领
+          </button>
+        </div>
+
+        <div class="map-wrap">
+          <canvas id="mapCanvas" class="map-image" aria-label="校园行动卫星地图"></canvas>
+          <div class="hotspot-layer" id="hotspotLayer"></div>
+        </div>
+      </section>
+
+      <aside class="intel-panel" aria-live="polite">
+        <div class="interface-tabs" role="tablist" aria-label="战术界面切换">
+          <button class="interface-tab active" data-panel="guidePanel" type="button">行动指南</button>
+          <button class="interface-tab" data-panel="introPanel" type="button">行动介绍</button>
+        </div>
+
+        <section class="interface-panel active" id="guidePanel">
+          <div class="status-strip">
+            <span>绝密行动</span>
+            <strong id="threatLevel">中等威胁</strong>
+          </div>
+          <h1>青岛三十九中——绝密行动战术板</h1>
+          <p id="panelLead">点击地图上的任意彩色图标，查看该对象的专属交互战术板。</p>
+
+          <div class="intel-card">
+            <div class="card-topline">
+              <span id="intelType">行动概览</span>
+              <span id="intelStatus">实时刷新</span>
+            </div>
+            <h2 id="intelTitle">全图战术概览</h2>
+            <p id="intelBody">所有可交互对象已接入独立战术板。点击撤离、保险柜、局内行动或 BOSS 首领图标，可同步高亮同类目标并切换到对应点位方案。</p>
+
+            <dl class="intel-grid">
+              <div>
+                <dt>风险</dt>
+                <dd id="intelRisk">3 / 5</dd>
+              </div>
+              <div>
+                <dt>收益</dt>
+                <dd id="intelReward">4 / 5</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="tactical-card">
+            <div class="card-topline">
+              <span>交互战术板</span>
+              <span id="boardCode">BOARD-00</span>
+            </div>
+            <div class="tactical-tags">
+              <span id="valueTag">均衡推进</span>
+              <span id="timingTag">中期执行</span>
+              <span id="teamTag">双人协同</span>
+            </div>
+            <dl class="tactical-grid">
+              <div>
+                <dt>切入路线</dt>
+                <dd id="entryPlan">从行政楼或国际部切入，避开教学核心区正面交火。</dd>
+              </div>
+              <div>
+                <dt>执行动作</dt>
+                <dd id="actionPlan">先确认枪声与脚步，再决定搜索、拉闸或撤离。</dd>
+              </div>
+              <div>
+                <dt>撤出路线</dt>
+                <dd id="exitPlan">优先接正门撤离或教工宿舍门口撤离，避免回穿广场中心。</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <section class="interface-panel" id="introPanel">
+          <div class="status-strip">
+            <span>行动介绍</span>
+            <strong>情报简报</strong>
+          </div>
+          <h1>青岛39中</h1>
+          <p>模式：绝密。游戏时间：30分钟。总共刷新6-7队，需根据刷新规则判断开局接敌压力。</p>
+
+          <div class="tactical-card">
+            <div class="card-topline">
+              <span>行动介绍</span>
+              <span>BRIEF-01</span>
+            </div>
+            <dl class="tactical-grid">
+              <div>
+                <dt>刷新规则</dt>
+                <dd>123必刷一队，456刷2或3队，78刷1或2队，总共刷6-7队。</dd>
+              </div>
+              <div>
+                <dt>撤离方式</dt>
+                <dd>1. 拉闸撤：仅能开启一次，拉闸后5分钟撤离。2. 丢包撤：10分钟后开启，仅有1个名额。</dd>
+              </div>
+              <div>
+                <dt>特殊撤离</dt>
+                <dd>3. 班车撤：20分钟后开启，需完成艺术楼的任务后等待1分钟撤离。4. 假条撤：10分钟后刷新，携带假条至假条撤离点等待1分钟后撤离。</dd>
+              </div>
+              <div>
+                <dt>假条注意</dt>
+                <dd>获取假条后全图播报携带者位置，但携带者不显示危险等级；同队可跟随携带假条的队友一起撤离。</dd>
+              </div>
+              <div>
+                <dt>首领</dt>
+                <dd>［首领］小基、［首领］小马、［首领］小军，三个BOSS目标单局随机刷新一名。</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+      </aside>
+    </main>
+    <footer class="site-footer">
+      <p>本网页仅供娱乐，无不良引导。</p>
+      <p>本网页制作者：佚名。</p>
+      <p>本网页地图制作者：苏神，登神，牢铭（排名不分先后）</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
